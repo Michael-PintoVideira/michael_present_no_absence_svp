@@ -1,7 +1,9 @@
-let operationcode = 42;
-let operationAllowed = true;
-let operationName = "KSW";
-let agent = {name: "kreog", code: 42};
-let newbi = {name: "Mate", code: 21};
-let _007 = {code: 21};
-let agents = {agent, newbi, _007};
+const operationCode = 42;
+const operationAllowed = true;
+let operationName = 'KSW';
+const agents: {name ?: string, code: number}[] = 
+[
+    {name: 'Kreog', code: 42},
+    {name: 'Mate', code: 21},
+    {code: 0.07}
+]
