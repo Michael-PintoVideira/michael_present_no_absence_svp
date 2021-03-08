@@ -1,4 +1,6 @@
-function sayHello(name ?: string){
+export let magic = 42;
+
+export function sayHello(name ?: string){
     if(name  )
         console.log('Hello ${name}');
     else
