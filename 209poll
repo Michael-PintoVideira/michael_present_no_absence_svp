@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+from math import *
+from sys import *
+def main():
+    if(len(argv) == 1):
+        print("what are you doing johnson")
+        exit(84)
+    
+    if (argv[1] == '-help'):
+        print("USAGE")
+        print( "\t" + argv[0] + " pSize sSize p" + "\n")
+        print("DESCRIPTION")
+        print("\tpSize\tsize of the population")
+        print("\tsSize\tsize of the sample (supposed to be representative)")
+        print("\tp\tpercentage of voting intentions for a specific candidate")
+        exit(0)
+    
+    if(len(argv) != 4):
+        print("Bad utilisation")
+        exit(84)
+    
+    first_arg = int (argv[1])
+    second_arg = int (argv[2])
+    purc = float(argv[3]) / 100
+    try:
+        variable = ((purc * (1 - purc)) / second_arg) * ((first_arg - second_arg) / (first_arg - 1))
+        p_f = (2 * 1.96 * sqrt(variable)) / 2 *100
+        p_s = (2 * 2.58 * sqrt(variable)) / 2 * 100
+        print("Population size:\t " + str(first_arg))
+        print("Sample size:\t\t" + str(second_arg))
+        print("Voting intentions:\t %.2f%%" % float(argv[3]))
+        print("ariance:\t\t %.6f" % float(variable))
+        print("95%% confidence interval: [", end='')
+        if ((purc * 100 - p_f) <= 0):
+            print("0%", end='')
+        else: 
+            print("%0.2f%%" % (purc * 100 - p_f),  end='')
+        print(";  ", end='')
+
+        if((purc * 100 - p_f) <= 0):
+            print("O%%")
+        else:
+            print("%0.2f%%" % (purc * 100 + p_f), end='')
+        print("]")
+        print("99%% confidence interval: [", end='')
+        if(purc * 100 - p_s <= 0):
+            print("0%%", end='')
+        else:
+            print("%0.2f%%"% (purc * 100 - p_s), end='')
+        print(";  ", end='')
+        if ((purc * 100 + p_s) >= 100):
+            print("100%%")
+        else:
+            print("%0.2f%%" % (purc * 100 + p_s), end = '')
+        print("]")
+    except:
+        print("what the fuck johnson!")
+        exit (84)
+
+    exit (0)
+
+main()
